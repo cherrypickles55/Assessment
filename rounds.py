@@ -40,7 +40,6 @@ print ("Program continues")
 
 
 
-
 # Ask user for number of questions
 def int_check(question, exit_code=None):
     """ checks for an integer more than 0 (allows <enter>)"""
