@@ -97,8 +97,9 @@ def int_check(question, exit_code=None):
 # Ask user for number of rounds
 rounds_wanted = int_check("How many rounds?","")
 
-print()
-print ("Program continues")
+
+
+
 
 import random
 
@@ -106,6 +107,8 @@ import random
 # Choose number between two integers
 random_integer = random.randint (1, 10)
 
-# Calculations
-math_expression = "7 * 5"
+# Choose from list...
+
+
+
 
