@@ -28,16 +28,16 @@ def instructions():
 Get the questions correct!   
     """)
 
+
+print()
+print ("Program continues")
+
 # ask the user if they want instructions (check they say yes / no)
 want_instructions = yes_no("Do you want instructions? ")
 
  # Display the instructions if the user wants to see them...
 if want_instructions == "yes":
     instructions()
-
-print()
-print ("Program continues")
-
 
 
 # Ask user for number of questions
@@ -95,8 +95,12 @@ def int_check(question, exit_code=None):
             elif user_response == var_item [0]:
                 return var_item
 
+
+
 # Ask user for number of rounds
 rounds_wanted = int_check("How many rounds?","")
+
+
 
 
 
