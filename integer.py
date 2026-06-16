@@ -33,16 +33,38 @@ want_instructions = yes_no("Do you want instructions? ")
 if want_instructions == "yes":
     instructions()
 
+import random
+def string_checker(question, valid_ans=("yes", "no")):
 
-def quiz_compare(user, comp):
-                # there is one way to get a correct answer
-                if user == comp:
-                    result = "accurate"
-                # if it is not correct, then it's wrong
-                else:
-                    result = "inaccurate"
-                return result
+    """ Check that users enter a valid word / first
+    letter of the word based on a list of options. Defaults to yes / no."""
 
+    error = f"Please enter a valid option from the following list: {valid_ans}"
+
+
+    while True:
+
+        # Get user response and make sure it's lowercase
+        user_response = input(question).lower()
+
+
+
+        for var_item in valid_ans:
+            # check if the user response is a word in the list
+            if var_item == user_response:
+                return var_item
+
+
+
+            # check if the user response is the same as
+            # the first letter of an item in the list
+            elif user_response == var_item [0]:
+                return var_item
+
+
+        # print error if user does not enter something that is valid
+        print(error)
+        print()
 
 # Ask user for number of questions
 def int_check(question, exit_code=None):
@@ -74,12 +96,22 @@ def int_check(question, exit_code=None):
             print(error)
 
 
+def quiz_compare(user, comp):
+    # there is one way to get a correct answer
+    if user == comp:
+        result = "accurate"
+    # if it is not correct, then it's wrong
+    else:
+        result = "inaccurate"
+    return result
+
 
 # Displays rounds
 rounds_played = 0
 
 # Main routine
 
+# Initilise game variables
 mode = "regular"
 comp = 0
 round_accurate = 0
@@ -90,28 +122,23 @@ round_inaccurate = 0
 rounds_wanted = int_check("How many rounds?", "")
 print("Rounds_wanted", rounds_wanted)
 
-
-# set rounds_wanted to a number for comparison later.
-rounds_wanted = 5
+if rounds_wanted == "":
+    # set rounds_wanted to a number for comparison later.
+    rounds_wanted = 5
 
 # Game loop starts here
-while rounds_played <= rounds_wanted:
+while rounds_played < rounds_wanted:
 
     # Rounds headings
     rounds_heading = f"\n🦑🦑🦑 Round {rounds_played + 1} of {rounds_wanted} 🦑🦑🦑"
 
     print(rounds_heading)
     print()
-    print("Press enter to continue")
+
     break
 
-
-
-
-
-
-# Generate random numbers
 import random
+# Generate random numbers
 
 num1 = random.randint(1, 10)
 num2 = random.randint(1, 10)
@@ -153,31 +180,19 @@ else:
 
 
 
-# end of the round!!
+
+
+
+
+
 rounds_played += 1
-# quiz loop ends here
 
 
 # Game history
 while True:
-    rounds_played = input("Round? ")
+    rounds_played = input(" ")
     if rounds_played == "":
         break
-
-
-
-    user_points = int(input("User points? "))
-    comp_points = int(input("User points? "))
-    winner = input("Who won? ")
-    user_score = int(input("User points? "))
-    comp_score = int(input("Computer points? "))
-
-    game_results = (f"Round {rounds_played}: User Points {user_points} | "
-                    f"Computer Points {comp_points}, {winner} wins"
-                    f"( {user_score} | {comp_score})")
-
-
-
 
 
 
