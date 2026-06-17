@@ -117,6 +117,7 @@ comp = 0
 round_accurate = 0
 round_inaccurate = 0
 
+quiz_history = []
 
 # Ask user for number of rounds
 rounds_wanted = int_check("How many rounds?", "")
@@ -126,8 +127,8 @@ if rounds_wanted == "":
     # set rounds_wanted to a number for comparison later.
     rounds_wanted = 5
 
-# Game loop starts here
-while rounds_played < rounds_wanted:
+    # Game loop starts here
+    while rounds_played < rounds_wanted:
 
     # Rounds headings
     rounds_heading = f"\n🦑🦑🦑 Round {rounds_played + 1} of {rounds_wanted} 🦑🦑🦑"
@@ -135,65 +136,75 @@ while rounds_played < rounds_wanted:
     print(rounds_heading)
     print()
 
-    break
-
-import random
-# Generate random numbers
-
-num1 = random.randint(1, 10)
-num2 = random.randint(1, 10)
-
-print("addition:")
-print("num1 =", num1)
-print("num2 =", num2)
-
-# equations
-addition = num1 + num2
 
 
-user_addition = int(input("Enter the answer:"))
+    import random
+    # Generate random numbers
 
-result = quiz_compare(user_addition, addition)
-print(f" user answer:{user_addition} accurate answer:{addition}, result{result}")
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
 
-# Adjust quiz correct/ wrong encounters and add results to quiz history
+    print("addition:")
+    print("num1 =", num1)
+    print("num2 =", num2)
 
-if result == "inaccurate":
-    round_inaccurate += 1
-    feedback = "inaccurate"
+    # equations
+    addition = num1 + num2
 
 
-else:
-    feedback = "Accurate"
+    user_addition = int(input("Enter the answer:"))
 
-# Set up round feedback output it user.
-# Add it to the quiz history list (include the round number)
+    result = quiz_compare(user_addition, addition)
+    print(f" user answer:{user_addition} accurate answer:{addition}, result{result}")
+
+    # Adjust quiz correct/ wrong encounters and add results to quiz history
+
+    if result == "inaccurate":
+        round_inaccurate += 1
+        feedback = "inaccurate"
+
+
+    else:
+        feedback = "Accurate"
+
+    # Set up round feedback output it user.
+    # Add it to the quiz history list (include the round number)
 
     round_feedback = f"{user_addition} vs {addition}, {feedback}"
     history_item = f"Round: {rounds_played + 1} - {result}"
     print(result)
 
-    # Loop until we have a winner...
-    print()
-    input("Press <enter> to continue this round\n")
+# Loop until we have a winner...
+print()
+input("Press <enter> to continue this round\n")
 
 
 
-
-
-
-
-
-
-rounds_played += 1
-
-
-# Game history
+# Quiz history
 while True:
-    rounds_played = input(" ")
+    rounds_played = input("Round feedback? ")
     if rounds_played == "":
         break
 
+    # Set up round feedback and output it user
+    # Add it to the quiz history list (include the round number)
+
+    history_item = f"Round: {rounds_played} - {round_feedback}"
+
+    quiz_history.append(history_item)
+
+    rounds_played += 1
+
+
+# ask user if they want to see their quiz history and output it if requested.
+    see_history = string_checker("\nDo you want to see your quiz history? ")
+    if see_history == "yes":
+        for item in quiz_history:
+            print(item)
+
+
+    print()
+    print("Thanks for playing!")
 
 
 
