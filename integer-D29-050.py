@@ -33,7 +33,7 @@ want_instructions = yes_no("Do you want instructions? ")
 if want_instructions == "yes":
     instructions()
 
-
+import random
 def string_checker(question, valid_ans=("yes", "no")):
 
     """ Check that users enter a valid word / first
@@ -117,7 +117,6 @@ comp = 0
 round_accurate = 0
 round_inaccurate = 0
 
-round_feedback: ()
 quiz_history = []
 
 # Ask user for number of rounds
@@ -128,14 +127,15 @@ if rounds_wanted == "":
     # set rounds_wanted to a number for comparison later.
     rounds_wanted = 5
 
-# Game loop starts here
-while rounds_played < rounds_wanted:
+    # Game loop starts here
+    while rounds_played < rounds_wanted:
 
-    # Rounds headings
+ # Rounds headings
     rounds_heading = f"\n🦑🦑🦑 Round {rounds_played + 1} of {rounds_wanted} 🦑🦑🦑"
 
     print(rounds_heading)
     print()
+
 
 
     import random
@@ -153,6 +153,7 @@ while rounds_played < rounds_wanted:
 
 
     user_addition = int(input("Enter the answer:"))
+
     result = quiz_compare(user_addition, addition)
     print(f" user answer:{user_addition} accurate answer:{addition}, result{result}")
 
@@ -171,25 +172,39 @@ while rounds_played < rounds_wanted:
 
     round_feedback = f"{user_addition} vs {addition}, {feedback}"
     history_item = f"Round: {rounds_played + 1} - {result}"
-    quiz_history.append(history_item)
     print(result)
 
-
-    # end of the round!
-    rounds_played += 1
-    # quiz loop ends here
-
-
-
 # Loop until we have a winner...
+print()
+input("Press <enter> to continue this round\n")
 
-    # ask user if they want to see their quiz history and output it if requested.
+
+
+# Quiz history
+while True:
+    rounds_played = input("Round feedback? ")
+    if rounds_played == "":
+        break
+
+    # Set up round feedback and output it user
+    # Add it to the quiz history list (include the round number)
+
+    history_item = f"Round: {rounds_played} - {round_feedback}"
+
+    quiz_history.append(history_item)
+
+    rounds_played += 1
+
+
+# ask user if they want to see their quiz history and output it if requested.
     see_history = string_checker("\nDo you want to see your quiz history? ")
     if see_history == "yes":
         for item in quiz_history:
             print(item)
-print()
-print("Thanks for playing!")
+
+
+    print()
+    print("Thanks for playing!")
 
 
 
